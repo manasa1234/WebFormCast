@@ -1,0 +1,48 @@
+USE [aclgusit]
+GO
+
+
+/****** Object:  StoredProcedure [dbo].[PrevReceiptNo_Update]    Script Date: 10/22/2015 5:29:05 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[PrevReceiptNo_Update]
+(
+       	@Employee_id int,
+		@Receipt_No varchar(100),
+		@Employer_Name varchar(100),	
+		@Signature varchar(100)
+)
+AS
+
+BEGIN
+
+	BEGIN TRAN
+	UPDATE Employee_PrevReceiptNo
+	SET 
+	 Receipt_No=@Receipt_No
+	,Employer_Name=@Employer_Name
+	WHERE  Employee_id=@Employee_id And  Signature=@Signature
+	
+ IF (@@error!=0)
+     BEGIN
+         RAISERROR('Error While Updating Record in PrevReceiptNo Table ', 16,1)
+         ROLLBACK TRAN
+         RETURN(1)
+     END
+ else
+--  SET @Employee_id = @@Identity
+    COMMIT TRAN
+END
+
+
+
+
+GO
+
+

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="ACLG_DB_Test-Web.config Connection String" description="ACLG_DB_Test Connection String used in web.config by the application to access the database." defaultValue="Server=WIMS\SQLEXPRESS;Database=aclgusit;User ID=WIMS\syamala;Password=abc123;Trusted_Connection=True;Encrypt=True;TrustServerCertificate=True;Connection Timeout=130;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\WebFormCast\\WebFormCast\\WebFormCast\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ACLG_DB_Test']/@connectionString" />
+  </parameter>
+  <parameter name="ACLG_DB-Web.config Connection String" description="ACLG_DB Connection String used in web.config by the application to access the database." defaultValue="Server=tcp:fu2k7y9viy.database.windows.net,1433;Database=aclgusit;User ID=usitaclg@fu2k7y9viy;Password=Aclg@Usit16;Trusted_Connection=False;Encrypt=True;Connection Timeout=130;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\WebFormCast\\WebFormCast\\WebFormCast\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ACLG_DB']/@connectionString" />
+  </parameter>
+</parameters>

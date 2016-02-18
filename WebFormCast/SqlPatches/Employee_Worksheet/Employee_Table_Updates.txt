@@ -1,0 +1,69 @@
+alter table dbo.employee add Q_isUSResident varchar(1) null;
+alter table dbo.employee add Q_isThirdParty varchar(1) null;
+alter table dbo.employee add Q_isPremiumFee varchar(1) null;
+alter table dbo.employee add Q_isEmpRelated varchar(1) null;
+alter table dbo.employee add Q_isEmpRelated varchar(1) null;
+alter table dbo.employee add Q_isFileDependents varchar(1) null;
+alter table dbo.employee add Q_isPrevEmployed varchar(1) null;
+alter table dbo.employee add SEVIS_Number varchar(15) null;
+alter table dbo.employee add Std_EAD_RNumber varchar(20) null;
+alter table dbo.employee add PassportIssueCountry varchar(50) null;
+
+alter table dbo.employee add EC_JobTitle varchar(100) null;
+alter table dbo.employee add EC_Name varchar(100) null;
+alter table dbo.employee add EC_Address varchar(500) null;
+alter table dbo.employee add EC_MgrName varchar(100) null;
+alter table dbo.employee add EC_Email varchar(100) null;
+alter table dbo.employee add EC_Phone varchar(50) null;
+
+alter table dbo.employee add PERM_DateFiled DateTime null;
+alter table dbo.employee add PERM_CaseNo varchar(25) null;
+alter table dbo.employee add I140_ReceiptNo varchar(25) null;
+alter table dbo.employee add Pend_App_Type varchar(25) null;
+alter table dbo.employee add Pend_App_ReceiptNo varchar(25) null;
+
+alter table dbo.employee add Comments Text null;
+
+--modify Employee_Select stored proc
+Q_isUSResident, Q_isThirdParty, Q_isPremiumFee, Q_isEmpRelated, Q_isFileDependents, Q_isPrevEmployed 
+SEVIS_Number, Std_EAD_RNumber, PassportIssueCountry,
+EC_JobTitle, EC_Name, EC_Address, EC_MgrName, EC_Email, EC_Phone,
+PERM_DateFiled, PERM_CaseNo, I140_ReceiptNo, Pend_App_Type, Pend_App_ReceiptNo
+,Comments
+
+--modify Employee_Update1 and Employee_Update3 stored procs
+@SevisNo varchar(15),
+@StdEADNo varchar(20),
+@PassportIssueCountry varchar(50),
+@EC_JobTitle varchar(100),
+@EC_Name varchar(100),
+@EC_Address varchar(500),
+@EC_MgrName varchar(100),
+@EC_Email varchar(100),
+@EC_Phone varchar(50),
+@PERM_DateFiled DateTime, 
+@PERM_CaseNo varchar(25), 
+@I140_ReceiptNo varchar(25), 
+@Pend_App_Type varchar(25), 
+@Pend_App_ReceiptNo varchar(25)
+
+SEVIS_Number=@SevisNo,
+Std_EAD_RNumber=@StdEADNo,
+PassportIssueCountry=@PassportIssueCountry,
+EC_JobTitle=@EC_JobTitle,
+EC_Name=@EC_Name,
+EC_Address=@EC_Address,
+EC_MgrName=@EC_MgrName,
+EC_Email=@EC_Email,
+EC_Phone=@EC_Phone,
+PERM_DateFiled=@PERM_DateFiled, 
+PERM_CaseNo=@PERM_CaseNo,
+I140_ReceiptNo=@I140_ReceiptNo,
+Pend_App_Type=@Pend_App_Type,
+Pend_App_ReceiptNo=@Pend_App_ReceiptNo
+
+--remove these from Employee_Update1 and Employee_Update3 stored procs
+@Maritalstatus
+@Dependents
+@DependentsCount
+

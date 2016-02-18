@@ -1,0 +1,447 @@
+﻿using System;
+using System.Collections;
+using System.Configuration;
+using System.Data;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.HtmlControls;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using ACLG;
+using WebSupergoo.ABCpdf5;
+
+public partial class attorney_formi129hpdf : System.Web.UI.Page
+{
+    int intEmployeeId = 0;
+    int intAttorney_id = 0;
+    string strEmployeeSignature = "";
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        try
+        {
+            intAttorney_id = Convert.ToInt16(Session["Attorney_Id"]);
+        }
+        catch { }
+        try
+        {
+            intEmployeeId = Convert.ToInt16(Session["Attorney_Employee_Id"]);
+            //strEmployeeSignature =Session["Attorney_Employee_Signature"].ToString();
+        }
+        catch { }
+        try
+        {
+            strEmployeeSignature = Request["signature"].ToString();
+        }
+        catch { }
+
+
+        if (intAttorney_id <= 0)
+        {
+            Response.Redirect("index.aspx");
+        }
+
+        if (!IsPostBack)
+        {
+            Initialize();
+        }
+    }
+
+    protected void Initialize()
+    {
+
+
+        ACLG.Form_i129H OF = new ACLG.Form_i129H(intEmployeeId);
+        
+        Doc theDoc = new Doc();
+        //theDoc.SetInfo(0, "License", "322-594-815-276-4005-092 ABCpdf .NET Pro 5");
+        theDoc.Read(Server.MapPath("../orgpdf/Form I129H.pdf"));
+
+        theDoc.Form["Employers_LastName"].Value = OF.f1_Person_Last_Name;
+        theDoc.Form["Employers_FirstName"].Value = OF.f1_Person_First_Name;
+        theDoc.Form["Employers_MiddleName"].Value = OF.f1_Person_Middle_Name;
+        theDoc.Form["Employers_PhoneNumber"].Value = OF.f1_Person_Telephone;
+        theDoc.Form["Employers_CompanyName"].Value = OF.f1_CompanyName;
+        theDoc.Form["Employers_PhoneNumber1"].Value = OF.f1_CompanyPhone;
+        theDoc.Form["T007"].Value = OF.f1_CompanyPhone_Code; 
+        theDoc.Form["Employers_StreetAddress"].Value = OF.f1_CompanyStreet;
+        theDoc.Form["Employers_SuiteNumber"].Value = OF.f1_CompanySuite;
+        theDoc.Form["Employers_AttentionLine"].Value = OF.f1_CompanyInCareOf;
+        theDoc.Form["Employers_City"].Value = OF.f1_CompanyCity ;
+        theDoc.Form["Employers_State"].Value = OF.f1_CompanyState;
+        theDoc.Form["Employers_CountryID"].Value = OF.f1_CompanyCountry;
+        theDoc.Form["Employers_ZipCode"].Value = OF.f1_CompanyZip;
+        theDoc.Form["Employers_EmailAddress"].Value = OF.f1_CompanyEmail;
+        theDoc.Form["Employers_TaxID"].Value = OF.f1_CompanyFederalIdentification;
+        theDoc.Form["Employers_SSN"].Value = OF.f1_ComapnySocialSecurity;
+        theDoc.Form["T019"].Value = OF.f1_CompanyIndividualTax;
+        theDoc.Form["Attorneys_LicensedArea+Attorneys_LicenseNumber"].Value = OF.f1_ATTY_State_License;
+        theDoc.Form["ClssSy"].Value = OF.f2_RequestedNonimmigrantClassification;
+        theDoc.Form["T021"].Value="Off";
+        theDoc.Form["T022"].Value="Off";
+        theDoc.Form["T023"].Value="Off";
+        theDoc.Form["T024"].Value="Off";
+        theDoc.Form["T025"].Value="Off";
+        theDoc.Form["T026"].Value="Off";
+        if(OF.f2_BasisforClassification==1)
+            theDoc.Form["T021"].Value = "Yes";
+        else if (OF.f2_BasisforClassification == 2)
+            theDoc.Form["T022"].Value = "Yes";
+        else if (OF.f2_BasisforClassification == 3)
+            theDoc.Form["T023"].Value = "Yes";
+        else if (OF.f2_BasisforClassification == 4)
+            theDoc.Form["T024"].Value = "Yes";
+        else if (OF.f2_BasisforClassification == 5)
+            theDoc.Form["T025"].Value = "Yes";
+        else if (OF.f2_BasisforClassification == 6)
+            theDoc.Form["T026"].Value = "Yes";
+        else if (OF.f2_BasisforClassification == 7)
+            theDoc.Form["T027"].Value = "Yes";
+        theDoc.Form["T027"].Value = OF.f2_receipt_number;
+        theDoc.Form["T029"].Value = "Off";
+        theDoc.Form["T030"].Value = "Off";
+        theDoc.Form["T031"].Value = "Off";
+        theDoc.Form["T032"].Value = "Off";
+        theDoc.Form["T033"].Value = "Off";
+        theDoc.Form["T034"].Value = "Off";
+        
+        if(OF.f2_RequestedAction==1)
+            theDoc.Form["T029"].Value = "Yes";
+        if (OF.f2_RequestedAction == 2)
+            theDoc.Form["T030"].Value = "Yes";
+        if (OF.f2_RequestedAction == 3)
+            theDoc.Form["T031"].Value = "Yes";
+        if (OF.f2_RequestedAction == 4)
+            theDoc.Form["T032"].Value = "Yes";
+        if (OF.f2_RequestedAction == 5)
+            theDoc.Form["T033"].Value = "Yes";
+        if (OF.f2_RequestedAction == 6)
+            theDoc.Form["T034"].Value = "Yes";
+        theDoc.Form["PrPet"].Value = OF.f2_Prior_Petition;
+        theDoc.Form["TtNb"].Value = OF.f2_Totalnumberofworkersinpetition;
+
+
+        theDoc.Form["EntNme"].Value = OF.f3_Entertainment_Group_Name;
+        theDoc.Form["Applicants_LastName"].Value = OF.f3_Last_Name;
+        theDoc.Form["Applicants_FirstName"].Value = OF.f3_First_Name;
+        theDoc.Form["Applicants_MiddleName"].Value = OF.f3_Middle_Name;
+        theDoc.Form["Applicants_OtherNames"].Value = OF.f3_Other_Name1 ;
+        theDoc.Form["T043"].Value = OF.f3_Other_Name2 ;
+        theDoc.Form["T044"].Value = OF.f3_Other_Name3 ;
+        theDoc.Form["Applicants_BirthDate"].Value = OF.f3_Date_of_Birth ;
+        theDoc.Form["Applicants_SSN"].Value = OF.f3_US_Social_Security;
+        theDoc.Form["Applicants_AlienNumber"].Value = OF.f3_Anumber;
+        theDoc.Form["Applicants_BirthCountryID"].Value = OF.f3_Country_of_Birth ;
+        theDoc.Form["Applicants_StateProvinceOfBirth"].Value = OF.f3_Province_of_Birth;
+        theDoc.Form["Applicants_CountryOfCitizenshipID"].Value = OF.f3_Country_of_Citizenship;
+        theDoc.Form["Applicants_DateOfLastEntry"].Value = OF.f3_Date_of_Last_Arrival;
+        theDoc.Form["Applicants_I94Number"].Value = OF.f3_I94;
+        theDoc.Form["Applicants_ImmigrationStatusID"].Value = OF.f3_Current_Nonimmigrant_Status;
+        theDoc.Form["Applicants_StatusExpirationDate"].Value = OF.f3_Date_Status_Expires;
+        theDoc.Form["Applicants_PassportNumber"].Value = OF.f3_Passport_Number;
+        theDoc.Form["T056"].Value = OF.f3_Date_Passport_Issued;
+        theDoc.Form["Applicants_PassportExpirationDate"].Value = OF.f3_Date_Passport_Expires;
+        theDoc.Form["Applicants_StreetAddress+Applicants_ApartmentNumber+Applicants_City+Applicants_State+Applicants_ZipCode"].Value = OF.f3_Current_US_Address;
+
+
+        theDoc.Form["CKI"].Value = "Off";
+        theDoc.Form["CKJ"].Value = "Off";
+        theDoc.Form["CKL"].Value = "Off";
+
+        if(OF.f4_Type_of_Office==1)
+            theDoc.Form["CKI"].Value = "Yes";
+        if (OF.f4_Type_of_Office == 2)
+            theDoc.Form["CKJ"].Value = "Yes";
+        if (OF.f4_Type_of_Office == 3)
+            theDoc.Form["CKL"].Value = "Yes";
+
+        theDoc.Form["OffAddr"].Value = OF.f4_Office_Address;
+        theDoc.Form["OffCty"].Value = OF.f4_US_State_or_Foreign_Country;
+        theDoc.Form["Applicants_ForeignStreetAddress+Applicants_ForeignApartmentNumber+Applicants_ForeignCity+Applicants_ForeignState+Applicants_ForeignZipCode+Applicants_ForeignCountryID"].Value = OF.f4_Persons_Foreign_Address;
+        
+        theDoc.Form["CKM"].Value = "Off";
+        theDoc.Form["CKN"].Value = "Off";
+        theDoc.Form["CKO"].Value = "Off";
+
+        if(OF.f4_Have_a_valid_passpor==1)
+            theDoc.Form["CKM"].Value = "Yes";
+        if (OF.f4_Have_a_valid_passpor == 2)
+            theDoc.Form["CKN"].Value = "Yes";
+        if (OF.f4_Have_a_valid_passpor == 3)
+            theDoc.Form["CKO"].Value = "Yes";
+
+
+
+
+        theDoc.Form["CKP"].Value = SetYesOff(OF.f4_Anyother_petitions, false);
+        theDoc.Form["CKQ"].Value = SetYesOff(OF.f4_Anyother_petitions, true);
+        theDoc.Form["MnyPt"].Value = OF.f4_Anyother_petitions_HowMany;
+
+
+        theDoc.Form["CKR"].Value = SetYesOff(OF.f4_Are_applications_for_replacement, false);
+        theDoc.Form["CKS"].Value = SetYesOff(OF.f4_Are_applications_for_replacement, true);
+        theDoc.Form["MnyApp"].Value = OF.f4_Are_applications_for_replacement_howmany;
+
+        
+        theDoc.Form["CKT"].Value = SetYesOff(OF.f4_dependents_being_filed, false);
+        theDoc.Form["CKU"].Value = SetYesOff(OF.f4_dependents_being_filed, true);
+        theDoc.Form["MnyDep"].Value = OF.f4_dependents_being_filed_HowMany;
+
+        theDoc.Form["CKV"].Value = SetYesOff(OF.f4_Removal_proceedings, false);
+        theDoc.Form["CKW"].Value = SetYesOff(OF.f4_Removal_proceedings, true);
+
+
+        theDoc.Form["CKX"].Value = SetYesOff(OF.f4_Have_you_ever_filed_an_immigrant_petition, false);
+        theDoc.Form["CKY"].Value = SetYesOff(OF.f4_Have_you_ever_filed_an_immigrant_petition, true);
+
+        theDoc.Form["CKZ"].Value = SetYesOff(OF.f4_Thepast_seven_years1, false);
+        theDoc.Form["CKAA"].Value = SetYesOff(OF.f4_Thepast_seven_years1, true);
+
+
+        theDoc.Form["CKBB"].Value = SetYesOff(OF.f4_Thepast_seven_years2, false);
+        theDoc.Form["CKCC"].Value = SetYesOff(OF.f4_Thepast_seven_years2, true);
+
+
+
+        theDoc.Form["T085"].Value = SetYesOff(OF.f4_Ever_previously_filed_a_petition_for_this_perso, false).ToString();
+        theDoc.Form["T086"].Value = SetYesOff(OF.f4_Ever_previously_filed_a_petition_for_this_perso, true).ToString();
+
+        theDoc.Form["CKDD"].Value = SetYesOff(OF.f4_If_you_are_filing_for_an_entertainment_group, false);
+        theDoc.Form["CKEE"].Value = SetYesOff(OF.f4_If_you_are_filing_for_an_entertainment_group, true);
+
+
+
+
+
+
+        theDoc.Form["Applicants_JobTitle"].Value = OF.f5_Job_Title;
+        theDoc.Form["JbDsc"].Value = OF.f5_Nontechnical_Job_Description;
+        theDoc.Form["T091"].Value = OF.f5_LCA_Case_Number ;
+        theDoc.Form["T092"].Value = OF.f5_NAICS_Code;
+        if (OF.f5_different_from_address.Trim() != "")
+            theDoc.Form["WkAddr"].Value = OF.f5_different_from_address;
+        else
+            theDoc.Form["WkAddr"].Value = "Same as Part 1";
+
+        theDoc.Form["CKFF"].Value = SetYesOff(OF.f5_Is_this_a_fulltime_position, false);
+        theDoc.Form["WkHrs"].Value = OF.f5_Hours_per_week;
+        theDoc.Form["CKGG"].Value = SetYesOff(OF.f5_Is_this_a_fulltime_position, true );
+        theDoc.Form["WkWgs"].Value = OF.f5_Wages_per_week_Year;
+        theDoc.Form["OthCmp"].Value = OF.f5_Other_Compensation;
+        theDoc.Form["DteFrm"].Value = OF.f5_Dates_of_intended_employment1;
+        theDoc.Form["DteTo"].Value = OF.f5_Dates_of_intended_employment2;
+        theDoc.Form["CKHH"].Value =  SetYesOff(OF.f5_Type_of_Petitioner,1);
+        theDoc.Form["CKII"].Value = SetYesOff(OF.f5_Type_of_Petitioner, 2);
+        theDoc.Form["CKJJ"].Value = SetYesOff(OF.f5_Type_of_Petitioner, 3);
+        theDoc.Form["Employers_Businesstype"].Value = OF.f5_Type_of_Business;
+        theDoc.Form["Employers_EstablishYear"].Value = OF.f5_Year_Established;
+        theDoc.Form["Employers_EmployeeCount"].Value = OF.f5_Current_Number_of_Employees ;
+        theDoc.Form["Employers_GrossAnnualIncome"].Value = OF.f5_Gross_Annual_Income ;
+        theDoc.Form["Employers_NetAnnualIncome"].Value = OF.f5_Net_Annual_Income;
+
+        theDoc.Form["T110"].Value = OF.f6_Daytime_Phone_Number1_Code;
+        theDoc.Form["T111"].Value = OF.f6_Daytime_Phone_Number1;
+        theDoc.Form["NmePrt"].Value = OF.f6_Print_Name1;
+        if(OF.f6_Date1=="")
+            theDoc.Form["SgDte"].Value = DateTime.Now.ToString("MM/dd/yyyy");
+        else
+        theDoc.Form["SgDte"].Value = OF.f6_Date1;
+        theDoc.Form["Attorneys_PhoneNumber"].Value = OF.f6_Daytime_Phone_Number2;
+        theDoc.Form["Attorneys_FirstName+Attorneys_MiddleName+Attorneys_LastName"].Value = OF.f6_Print_Name2;
+        
+        if(OF.f6_Date2=="")
+            theDoc.Form["PrpDte"].Value = DateTime.Now.ToString("MM/dd/yyyy");
+        else
+            theDoc.Form["PrpDte"].Value = OF.f6_Date2;
+ 
+        theDoc.Form["Attorneys_FirmName+Attorneys_StreetAddress+Attorneys_SuiteNumber+Attorneys_City+Attorneys_State+Attorneys_ZipCode"].Value = OF.f6_Firm_Name_and_Address;
+
+        theDoc.Form["Employers_CompanyName1"].Value = OF.f8_Name_of_organization_filing_petition;
+        theDoc.Form["Applicants_FirstName+Applicants_MiddleName+Applicants_LastName1"].Value = OF.f8_Name_of_person;
+        theDoc.Form["T163"].Value = SetYesOff(OF.f8_Classification_sought,1);
+        theDoc.Form["T165"].Value = SetYesOff(OF.f8_Classification_sought, 2);
+        theDoc.Form["T166"].Value = SetYesOff(OF.f8_Classification_sought, 3);
+        theDoc.Form["T168"].Value = SetYesOff(OF.f8_Classification_sought, 4);
+        theDoc.Form["T169"].Value = SetYesOff(OF.f8_Classification_sought, 5);
+        theDoc.Form["T170"].Value = SetYesOff(OF.f8_Classification_sought, 6);
+        theDoc.Form["T171"].Value = SetYesOff(OF.f8_Classification_sought, 7);
+        theDoc.Form["memDDt"].Value = OF.f8_Describe_the_proposed_duties ;
+        theDoc.Form["memPrO"].Value = OF.f8_Aliens_present_occupation;
+        theDoc.Form["T175"].Value = OF.f8_Print_or_Type_Name1;
+        theDoc.Form["T178"].Value = OF.f8_Print_or_Type_Name2 ;
+        if(OF.f8_DATE1!="")
+            theDoc.Form["PSgDt"].Value = OF.f8_DATE1 ;
+        else
+            theDoc.Form["PSgDt"].Value = DateTime.Now.ToString("MM/dd/yyyy");
+
+        if(OF.f8_DATE2!="")
+            theDoc.Form["AuthSDt"].Value = OF.f8_DATE2;
+        else
+            theDoc.Form["AuthSDt"].Value = DateTime.Now.ToString("MM/dd/yyyy");
+
+
+        theDoc.Form["TH222"].Value = OF.f11_Petitioners_Name;
+        theDoc.Form["chkPDEn"].Value = SetYesOff(OF.f11_Is_the_petitioner_a_dependent_employer, true);
+        theDoc.Form["chkPDEy"].Value = SetYesOff(OF.f11_Is_the_petitioner_a_dependent_employer, false);
+        theDoc.Form["chkPWVn"].Value = SetYesOff(OF.f11_found_to_be_a_willful_violator, true );
+        theDoc.Form["chkPWVy"].Value = SetYesOff(OF.f11_found_to_be_a_willful_violator, false);
+        theDoc.Form["chkBXNn"].Value = SetYesOff(OF.f11_exempt_H1B_nonimmigrant1, true);
+        theDoc.Form["chkBXNy"].Value = SetYesOff(OF.f11_exempt_H1B_nonimmigrant1, false);
+        theDoc.Form["chkBARPn"].Value = SetYesOff(OF.f11_exempt_H1B_nonimmigrant2, true );
+        theDoc.Form["chkBARPy"].Value = SetYesOff(OF.f11_exempt_H1B_nonimmigrant2, false);
+        theDoc.Form["chkBMDn"].Value = SetYesOff(OF.f11_BeneficiaryAnnualMaster, true );
+        theDoc.Form["chkBMDy"].Value = SetYesOff(OF.f11_BeneficiaryAnnualMaster, false);
+        theDoc.Form["Applicants_LastName1"].Value = OF.f11_Beneficiarys_Last_Name;
+        theDoc.Form["Applicants_FirstName1"].Value = OF.f11_First_Name ;
+        theDoc.Form["Applicants_MiddleName1"].Value = OF.f11_Middle_Name ;
+        theDoc.Form["attention"].Value = OF.f11_In_Care_Of ;
+        theDoc.Form["Applicants_StreetAddress1"].Value = OF.f11_Current_Street_Number_and_Name;
+        theDoc.Form["Applicants_ApartmentNumber1"].Value = OF.f11_AptNo ;
+        theDoc.Form["Applicants_City1"].Value = OF.f11_City ;
+        theDoc.Form["Applicants_State1"].Value = OF.f11_State;
+        theDoc.Form["Applicants_ZipCode1"].Value = OF.f11_Zip;
+        theDoc.Form["Applicants_SSN1"].Value = OF.f11_Social_Security ;
+        theDoc.Form["T243"].Value = OF.f11_I94;
+        theDoc.Form["T244"].Value = OF.f11_Previous_Receipt ;
+
+        theDoc.Form["chkaND"].Value = SetYesOff(OF.f11_Highest_Level_of_Education, 1);
+        theDoc.Form["chkbHSG"].Value = SetYesOff(OF.f11_Highest_Level_of_Education, 3);
+        theDoc.Form["chkSomC"].Value = SetYesOff(OF.f11_Highest_Level_of_Education, 5);
+        theDoc.Form["chkOnorMo"].Value = SetYesOff(OF.f11_Highest_Level_of_Education, 7);
+        
+        theDoc.Form["chkeAssDe"].Value = SetYesOff(OF.f11_Highest_Level_of_Education, 2);
+        theDoc.Form["chkfBachDe"].Value = SetYesOff(OF.f11_Highest_Level_of_Education, 4);
+        theDoc.Form["chkgMasDe"].Value = SetYesOff(OF.f11_Highest_Level_of_Education, 6);
+        theDoc.Form["chkhProDe"].Value = SetYesOff(OF.f11_Highest_Level_of_Education, 8);
+        theDoc.Form["chkiDocDe"].Value = SetYesOff(OF.f11_Highest_Level_of_Education,9 );
+        
+        for(int m=1;m<=29;m++)
+        theDoc.Form["major" + m.ToString()].Value = GetChar(OF.f11_Primary_Field_of_Study, m);
+
+        theDoc.Form["major29"].Value = OF.f1_Person_Last_Name;
+        theDoc.Form["T0310"].Value = SetYesOff(OF.f11_higher_degree_from_a_US, false);
+        theDoc.Form["T0300"].Value = SetYesOff(OF.f11_higher_degree_from_a_US, true );
+        theDoc.Form["T285"].Value = OF.f11_Name_of_the_US_institution;
+        theDoc.Form["T286"].Value = OF.f11_Date_Degree_Awarded;
+        theDoc.Form["T287"].Value = OF.f11_Type_of_US_Degree;
+        theDoc.Form["T288"].Value = OF.f11_Address_of_the_US_institution;
+        theDoc.Form["rate50"].Value = OF.f11_Rate_of_Pay_Per_Year;
+        theDoc.Form["LCA1"].Value = GetChar(OF.f11_LCA_Code,1) ;
+        theDoc.Form["LCA2"].Value = GetChar(OF.f11_LCA_Code,2);
+        theDoc.Form["LCA3"].Value = GetChar(OF.f11_LCA_Code, 3);
+        theDoc.Form["NAICS1"].Value =GetChar(OF.f11_NAICS_Code,1);
+        theDoc.Form["NAICS2"].Value = GetChar(OF.f11_NAICS_Code, 2);
+        theDoc.Form["NAICS3"].Value = GetChar(OF.f11_NAICS_Code, 3);
+        theDoc.Form["NAICS4"].Value = GetChar(OF.f11_NAICS_Code, 4);
+        theDoc.Form["NAICS5"].Value = GetChar(OF.f11_NAICS_Code, 5);
+        theDoc.Form["NAICS6"].Value = GetChar(OF.f11_NAICS_Code, 6);
+        theDoc.Form["Employers_SignatoryFirstName+Employers_SignatoryMiddleName+Employers_SignatoryLastName"].Value = OF.f13_Print_Name ;
+        theDoc.Form["memCertTitle"].Value = OF.f13_Title ;
+
+        theDoc.Form["memCertDate"].Value = DateTime.Now.ToString("MM/dd/yyyy");
+
+
+        theDoc.Form["chkAreY"].Value = SetYesOff(OF.f12_Fee_Exemption_1, true);
+        theDoc.Form["chkAreN"].Value = SetYesOff(OF.f12_Fee_Exemption_1, false);
+        theDoc.Form["chkHEAY"].Value = SetYesOff(OF.f12_Fee_Exemption_2, true);
+        theDoc.Form["chkHEAN"].Value = SetYesOff(OF.f12_Fee_Exemption_2, false);
+        theDoc.Form["chkNonY"].Value = SetYesOff(OF.f12_Fee_Exemption_3, true);
+        theDoc.Form["chkNonN"].Value = SetYesOff(OF.f12_Fee_Exemption_3, false);
+        theDoc.Form["chkSecY"].Value = SetYesOff(OF.f12_Fee_Exemption_4, true);
+        theDoc.Form["chkSecN"].Value = SetYesOff(OF.f12_Fee_Exemption_4, false);
+        theDoc.Form["chkAmendY"].Value = SetYesOff(OF.f12_Fee_Exemption_5, true);
+        theDoc.Form["chkAmendN"].Value = SetYesOff(OF.f12_Fee_Exemption_5, false);
+        theDoc.Form["chkServY"].Value = SetYesOff(OF.f12_Fee_Exemption_6, true);
+        theDoc.Form["chkServN"].Value = SetYesOff(OF.f12_Fee_Exemption_6, false);
+        theDoc.Form["chkPrimY"].Value = SetYesOff(OF.f12_Fee_Exemption_7, true);
+        theDoc.Form["chkPrimN"].Value = SetYesOff(OF.f12_Fee_Exemption_7, false);
+        theDoc.Form["chkInstY"].Value = SetYesOff(OF.f12_Fee_Exemption_8, true);
+        theDoc.Form["chkInstN"].Value = SetYesOff(OF.f12_Fee_Exemption_8, false);
+        theDoc.Form["T087"].Value = SetYesOff(OF.f12_Fee_Exemption_9, true);
+        theDoc.Form["T088"].Value = SetYesOff(OF.f12_Fee_Exemption_9, false);
+
+
+        theDoc.Form["chkRUHy"].Value = SetYesOff(OF.f12_Numerical_Limitation_1, true);
+        theDoc.Form["chkRUHn"].Value = SetYesOff(OF.f12_Numerical_Limitation_1, false);
+        theDoc.Form["chkRUNy"].Value = SetYesOff(OF.f12_Numerical_Limitation_2, true);
+        theDoc.Form["chkRUNn"].Value = SetYesOff(OF.f12_Numerical_Limitation_2, false);
+        theDoc.Form["chkRURy"].Value = SetYesOff(OF.f12_Numerical_Limitation_3, true);
+        theDoc.Form["chkRURn"].Value = SetYesOff(OF.f12_Numerical_Limitation_3, false);
+        theDoc.Form["chkIBNy"].Value = SetYesOff(OF.f12_Numerical_Limitation_4, true);
+        theDoc.Form["chkIBNn"].Value = SetYesOff(OF.f12_Numerical_Limitation_4, false);
+        theDoc.Form["chkHBGy"].Value = SetYesOff(OF.f12_Numerical_Limitation_5, true);
+        theDoc.Form["chkHBGn"].Value = SetYesOff(OF.f12_Numerical_Limitation_5, false);
+        theDoc.Form["chkDBWy"].Value = SetYesOff(OF.f12_Numerical_Limitation_6, true);
+        theDoc.Form["chkDBWn"].Value = SetYesOff(OF.f12_Numerical_Limitation_6, false);
+        theDoc.Form["T101"].Value = SetYesOff(OF.f12_Numerical_Limitation_7, true);
+        theDoc.Form["T102"].Value = SetYesOff(OF.f12_Numerical_Limitation_7, false);
+        
+
+        //theDoc.Form["txt"].Value = OF.f1_Person_Last_Name;
+        //theDoc.Form["txt"].Value = OF.f1_Person_Last_Name;
+
+
+
+
+        //theDoc.Form["txt"].Value = OF.f1_Person_Last_Name;
+
+        
+
+
+        
+        Byte[] theData = theDoc.GetData();
+        Response.Clear();
+        Response.ContentType = "application/pdf";
+        Response.AddHeader("content-length", theData.Length.ToString());
+        if (Request.QueryString["attachment"] != null)
+            Response.AddHeader("content-disposition", "attachment; filename=Form_I129H.PDF");
+        else
+            Response.AddHeader("content-disposition", "inline; filename=Form_I129H.PDF");
+
+        Response.BinaryWrite(theData);
+        Response.Flush();
+        Response.Write("<script language='javascript'>window.close();</script>");
+
+        //theDoc.Save(Server.MapPath("eformstamp.pdf")); 
+        //txtInre.Text = oE.LastName.ToUpper() + ", " + objG.Capitilaze(oE.FirstName) + " " + objG.Capitilaze(oE.MiddleName);
+        //txtEmployerName.Text = OE1.Legal_Name.ToString();
+        //txtAptNo.Text = OE1.Add_AptNo;
+        //txtStreet.Text = OE1.Add_Street;
+        //txtCity.Text = OE1.Add_City;
+        //txtState.Text = OE1.Add_State;
+        //txtZip.Text = OE1.Add_Zip;
+        //txtAttorney_Address.Text = OA.Address;
+        //txtAttorney_Name1.Text = OA.Name;
+        //txtAttorney_Phone.Text = OA.Phone;
+        //txtAttorney_Fax.Text = OA.Fax;
+        //txtAttorney_Name2.Text = OA.Name;
+        //txtEmployeeName.Text = "In RE: " + oE.LastName.ToUpper() + " " + objG.Capitilaze(oE.FirstName) + " " + objG.Capitilaze(oE.MiddleName) + " FORM-I-539";
+        //txtEmpoyer1.Text = OE1.Person_FullName;
+    }
+
+    protected string GetChar(string v1, int p)
+    {
+        
+        string strCh="";
+        if (v1.Length >= p)
+            strCh = v1.Substring(p-1, 1);
+        return strCh;
+    }
+
+    protected string SetYesOff(bool v1, bool v2)
+    {
+        if (v1 == v2)
+            return "Yes";
+        else
+            return "Off";
+    }
+    protected string SetYesOff(int v1, int v2)
+    {
+        if (v1 == v2)
+            return "Yes";
+        else
+            return "Off";
+    }
+
+}
+

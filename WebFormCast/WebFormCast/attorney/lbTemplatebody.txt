@@ -1,0 +1,27 @@
+<p>January 22, 2016</p>
+<p>Test  Newtest&nbsp;<br />, <br>, </p>
+<p><strong>RE: Offer of Employment</strong></p>
+<p>Dear . Newtest:</p>
+<p>On behalf of TEST (the "Company"), I am pleased to offer you the position of , reporting to BANDI, Vasu President of TEST</p>
+<ol>
+<li><span style="text-decoration: underline;">Effective Date:</span>&nbsp;Immediate</li>
+<li><span style="text-decoration: underline;">Salary:</span>&nbsp;Your salary will be  per annum. Your salary will be paid periodically in accordance with the Company's payroll procedures. In addition, in accordance with the Company's compensation practices, you will receive approximately annually, a salary review which will be based on your performance, Company's performance and such other factors, as may be determined by the Company.</li>
+<li><span style="text-decoration: underline;">Benefits:</span>&nbsp;You and your dependents will be eligible for the Company's standard benefits. You will accrue annual vacation at the rate of 0.8 days per month of full-time employment. Standard holiday policies will be observed. The Company, however, reserves the right to modify its employee benefits programs from time-to-time.</li>
+<li><span style="text-decoration: underline;">Employment Period:</span>&nbsp;Your employment with the Company will be at-will, meaning, you will not be obligated to remain employed by the Company for any specified period of time; likewise, the Company will not be obligated to continue your employment for any specific period and may terminate your employment at any time, with or without cause.</li>
+<li><span style="text-decoration: underline;">Supervision:</span>&nbsp; Should you be assigned to work on a project off-site for one of our clients, you will be required to engage in weekly progress reports with our headquarters so that we may effectively supervise your work product and employment particulars.&nbsp; You must also inform our office immediately of any issues that arise at this worksite so that we may address problems and adjust your work conditions, if necessary.&nbsp;</li>
+<li><span style="text-decoration: underline;">Performance Reviews</span>: Your work will be subject to ongoing performance reviews, and you will receive at least one formal performance review annually.&nbsp; Your supervisor will conduct this review of all work product(s) you have completed and other progress made both in-house and at client sites. Salary increases will be dependent upon this review as well as on the weekly progress reports submitted to your supervisor throughout the year.</li>
+<li><span style="text-decoration: underline;">Employment Eligibility, Work Permits:&nbsp;</span>Upon your acceptance of this Offer, we will arrange for any necessary work permits to be issued or transferred. Your employment is subject to and will begin only after the required work permit and other legal requirements have been fulfilled.</li>
+<li><span style="text-decoration: underline;">Proprietary Information, No Conflicts</span>: You agree to execute the Company's standard form of Invention, Non-Disclosure and Non-Compete Agreement and to be bound by all provisions thereof. You hereby represent that you are not presently bound by any employment agreement, confidential or proprietary information agreement or similar agreement with any current or previous employer that would impose any restriction on your acceptance of this offer or that would interfere with your ability to fulfill the responsibilities of your position with the Company.</li>
+</ol>
+<p>. Newtest, all of us at TEST are very enthusiastic about your commitment to joining the Company and have the highest expectation of your future contributions.</p>
+<p>By extending this offer letter, TEST is looking forward&nbsp;to a long-term, uninterrupted association with you.</p>
+<p>&nbsp;</p>
+<table border="0" cellspacing="0" cellpadding="0" width="100%">
+<tbody>
+<tr valign="top">
+<td>
+<p>________________________<br />#name<br />President,TEST</p>
+</td>
+</tr>
+</tbody>
+</table>

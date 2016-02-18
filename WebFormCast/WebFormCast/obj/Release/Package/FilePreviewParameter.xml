@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="webformcast" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^D:\\Projects\\WebFormCast-2015-09-11\\WebFormCast\\WebFormCast\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^D:\\Projects\\WebFormCast-2015-09-11\\WebFormCast\\WebFormCast\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="ACLG_DB-Web.config Connection String" description="" value="Server=tcp:fu2k7y9viy.database.windows.net,1433;Database=aclgusit;User ID=usitaclg@fu2k7y9viy;Password=Aclg@Usit16;Trusted_Connection=False;Encrypt=True;Connection Timeout=130;" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\Projects\\WebFormCast-2015-09-11\\WebFormCast\\WebFormCast\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ACLG_DB']/@connectionString" />
+  </parameter>
+  <parameter name="ACLG_DB_Latest-Web.config Connection String" description="" value="Server=tcp:fu2k7y9viy.database.windows.net,1433;Database=aclgusit;User ID=usitaclg@fu2k7y9viy;Password=Aclg@Usit16;Trusted_Connection=False;Encrypt=True;Connection Timeout=130;" tags="">
+    <parameterEntry kind="XmlFile" scope="D:\\Projects\\WebFormCast-2015-09-11\\WebFormCast\\WebFormCast\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='ACLG_DB_Latest']/@connectionString" />
+  </parameter>
+</parameters>

@@ -1,0 +1,13 @@
+alter table dbo.employee_dependents add Relation varchar(50) null;
+alter table dbo.employee_dependents add USAddress varchar(2000) null;
+
+--modify Employee_Select stored proc
+Relation, USAddress
+
+--modify Employee_Update1 and Employee_Update3 stored procs
+@Relation varchar(15),
+@USAddress varchar(20),
+
+Relation=@Relation,
+USAddress=@USAddress 
+

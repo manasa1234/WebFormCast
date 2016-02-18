@@ -1,0 +1,46 @@
+USE [aclgusit]
+GO
+
+/****** Object:  StoredProcedure [dbo].[PrevStay_Select]    Script Date: 10/22/2015 5:26:07 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[PrevStay_Select]
+(
+       	@Employee_id int
+	
+)
+AS
+
+BEGIN
+
+	BEGIN TRAN
+	SELECT 
+		Status,
+		DateIn, DateOut,
+		Signature
+	FROM  Employee_PrevStay
+	WHERE  Employee_id=@Employee_id
+	
+ IF (@@error!=0)
+     BEGIN
+         RAISERROR('Error While Selecting Record from PrevStay Table ', 16,1)
+         ROLLBACK TRAN
+         RETURN(1)
+     END
+ else
+--  SET @Employee_id = @@Identity
+    COMMIT TRAN
+END
+
+
+
+
+GO
+
+

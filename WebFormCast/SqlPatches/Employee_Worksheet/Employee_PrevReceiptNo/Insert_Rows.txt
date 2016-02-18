@@ -1,0 +1,22 @@
+delete from Employee_PrevReceiptNo;
+
+insert into Employee_PrevReceiptNo (Employee_id, Receipt_No, Signature, Created_Date)
+(
+select employee_id, prevreceiptno, NEWID(), GETDATE() from employee where datalength(ltrim(rtrim(prevreceiptno))) between 1 and 20
+)
+;
+
+--Manual
+select employee_id, prevreceiptno, NEWID(), GETDATE() from employee where datalength(ltrim(rtrim(prevreceiptno))) >=20;
+
+
+insert into Employee_PrevReceiptNo (Employee_id, Receipt_No, Signature, Created_Date)
+values (4429, 'WAC-09-213-52163', NEWID(), GETDATE());
+
+
+insert into Employee_PrevReceiptNo (Employee_id, Receipt_No, Signature, Created_Date)
+values (4429, 'EAC-06-185-53402', NEWID(), GETDATE());
+
+
+insert into Employee_PrevReceiptNo (Employee_id, Receipt_No, Signature, Created_Date)
+values (4429, 'SRC-07-255-5412', NEWID(), GETDATE());

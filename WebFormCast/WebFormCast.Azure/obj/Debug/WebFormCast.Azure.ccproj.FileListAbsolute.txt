@@ -1,0 +1,8 @@
+D:\Projects\WebFormCast\WebFormCast\WebFormCast.Azure\bin\Debug\ServiceConfiguration.cscfg
+D:\Projects\WebFormCast\WebFormCast\WebFormCast.Azure\bin\Debug\ServiceDefinition.csdef
+D:\Projects\WebFormCast\WebFormCast.Azure\bin\Debug\ServiceConfiguration.cscfg
+D:\Projects\WebFormCast\WebFormCast.Azure\bin\Debug\ServiceDefinition.csdef
+D:\Projects\WebFormCast-2015-02-05\WebFormCast\WebFormCast.Azure\bin\Debug\ServiceConfiguration.cscfg
+D:\Projects\WebFormCast-2015-02-05\WebFormCast\WebFormCast.Azure\bin\Debug\ServiceDefinition.csdef
+C:\WebFormCast\WebFormCast\WebFormCast.Azure\bin\Debug\ServiceConfiguration.cscfg
+C:\WebFormCast\WebFormCast\WebFormCast.Azure\bin\Debug\ServiceDefinition.csdef

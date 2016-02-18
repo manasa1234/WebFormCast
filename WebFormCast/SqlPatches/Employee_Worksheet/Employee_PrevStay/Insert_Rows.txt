@@ -1,0 +1,45 @@
+delete from Employee_PrevStay;
+
+insert into Employee_PrevStay (Employee_id, DateIn, DateOut, Signature, Created_Date)
+(
+
+select employee_id, DateIn1, DateOut1, NEWID(), GETDATE() from employee 
+where datalength(ltrim(rtrim(DateIn1))) > 0
+or
+datalength(ltrim(rtrim(Dateout1))) > 0
+
+)
+;
+
+insert into Employee_PrevStay (Employee_id, DateIn, DateOut, Signature, Created_Date)
+(
+
+select employee_id, DateIn2, DateOut2, NEWID(), GETDATE() from employee 
+where datalength(ltrim(rtrim(DateIn2))) > 0
+or
+datalength(ltrim(rtrim(Dateout2))) > 0
+
+)
+;
+
+insert into Employee_PrevStay (Employee_id, DateIn, DateOut, Signature, Created_Date)
+(
+
+select employee_id, DateIn3, DateOut3, NEWID(), GETDATE() from employee 
+where datalength(ltrim(rtrim(DateIn3))) > 0
+or
+datalength(ltrim(rtrim(Dateout3))) > 0
+
+)
+;
+
+insert into Employee_PrevStay (Employee_id, DateIn, DateOut, Signature, Created_Date)
+(
+
+select employee_id, DateIn4, DateOut4, NEWID(), GETDATE() from employee 
+where datalength(ltrim(rtrim(DateIn4))) > 0
+or
+datalength(ltrim(rtrim(Dateout4))) > 0
+
+)
+;

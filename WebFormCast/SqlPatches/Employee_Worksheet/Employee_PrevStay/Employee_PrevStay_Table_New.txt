@@ -1,0 +1,33 @@
+USE [aclgusit]
+GO
+
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+SET ANSI_PADDING ON
+GO
+
+CREATE TABLE [dbo].[Employee_PrevStay](
+	[PrevStay_id] [numeric](18, 0) IDENTITY(1,1) NOT NULL,
+	[Employee_id] [numeric](18, 0) NULL,
+	[Status] [varchar](20) NULL,
+	[DateIn] DateTime NULL,
+	[DateOut] DateTime NULL,
+	[Signature] [varchar](100) NULL,
+	[Created_Date] [datetime] NULL
+ CONSTRAINT [PK_Employee_PrevStay_id] PRIMARY KEY CLUSTERED 
+(
+	[PrevStay_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)
+)
+
+GO
+
+SET ANSI_PADDING OFF
+GO
+
+

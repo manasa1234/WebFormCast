@@ -1,0 +1,44 @@
+USE [aclgusit]
+GO
+
+/****** Object:  StoredProcedure [dbo].[PrevStay_Insert]    Script Date: 10/22/2015 5:19:14 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+
+CREATE PROCEDURE [dbo].[PrevStay_Insert]
+(
+    @Employee_id int,
+	@Status varchar(100),
+	@DateIn datetime=null, @DateOut datetime=null,
+	@Signature varchar(100)
+)
+AS
+
+BEGIN
+
+	BEGIN TRAN
+	INSERT INTO Employee_PrevStay(Employee_id,Status, DateIn, DateOut,Signature,Created_Date)
+	VALUES(@Employee_id,@Status,@DateIn,@DateOut,@Signature,getdate())
+	
+ IF (@@error!=0)
+     BEGIN
+         RAISERROR('Error While Inserting Record in PrevStay Table ', 16,1)
+         ROLLBACK TRAN
+         RETURN(1)
+     END
+ else
+--  SET @Employee_id = @@Identity
+    COMMIT TRAN
+END
+
+
+
+
+GO
+
+

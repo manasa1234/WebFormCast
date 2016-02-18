@@ -1,0 +1,6 @@
+D:\Projects\WebFormCast\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+D:\Projects\WebFormCast\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+D:\Projects\WebFormCast\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+D:\Projects\WebFormCast\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+D:\Projects\WebFormCast\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+D:\Projects\WebFormCast\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
